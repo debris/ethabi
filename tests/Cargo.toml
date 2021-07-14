@@ -10,3 +10,4 @@ ethabi-derive = { path = "../derive" }
 ethabi-contract = { path = "../contract" }
 hex = "0.4"
 hex-literal = "0.3"
+lazy_static = "1"

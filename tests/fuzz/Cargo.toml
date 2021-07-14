@@ -1,0 +1,26 @@
+
+[package]
+name = "ethabi-tests-fuzz"
+version = "0.0.0"
+authors = ["Automatically generated"]
+publish = false
+edition = "2018"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+ethabi = { path = "../../ethabi" }
+ethabi-tests = { path = "../" }
+lazy_static = "1"
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "fixed_abi_decode_random"
+path = "fuzz_targets/fixed_abi_decode_random.rs"
+test = false
+doc = false

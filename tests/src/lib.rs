@@ -13,6 +13,8 @@ use_contract!(operations, "../res/Operations.abi");
 use_contract!(urlhint, "../res/urlhint.abi");
 use_contract!(test_rust_keywords, "../res/test_rust_keywords.abi");
 
+pub mod fuzztests;
+
 #[cfg(test)]
 mod tests {
 	use crate::{eip20, validators};

@@ -161,8 +161,15 @@ fn decode_param(param: &ParamType, data: &[u8], offset: usize) -> Result<DecodeR
 		ParamType::FixedArray(ref t, len) => {
 			let is_dynamic = param.is_dynamic();
 
-			let (tail, mut new_offset) =
-				if is_dynamic { (&data[as_usize(&peek_32_bytes(data, offset)?)?..], 0) } else { (data, offset) };
+			let (tail, mut new_offset) = if is_dynamic {
+				let offset = as_usize(&peek_32_bytes(data, offset)?)?;
+                if offset > data.len() {
+                    return Err(Error::InvalidData);
+                }
+				(&data[offset..], 0)
+			} else {
+				(data, offset)
+			};
 
 			let mut tokens = vec![];
 
